@@ -1,2 +1,9 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<% @users.each do |e| %>
+    <p>
+        <%= e.uname %>
+        <%= e.pass %>
+        <%= link_to '削除', user_path(e.id), method: :delete %>
+    </p>
+<% end %>
+
+<%= link_to '新規追加', new_user_path %>
