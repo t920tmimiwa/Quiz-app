@@ -1,4 +1,4 @@
-<font size="7">Welcome Page</font>
+<font size="6">Welcome Page</font>
 <% @questions.each do |e| %>
 <p>
   <%= e.user_name %>
@@ -17,4 +17,9 @@
 <create>
   <%= link_to 'クイズ作成', "/questions/new" %>
 </create>
+
+<p>
+  <%= link_to '登録', users_path %>
+</p>
+
 </p>
