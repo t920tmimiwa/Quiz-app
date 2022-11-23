@@ -1,0 +1,11 @@
+<%= form_for @question, url: {action: :create} do |f| %>
+        <%= f.label :user_name, '名前' %>
+        <%= f.text_field :user_name %>
+    <p>
+        <%= f.label :que, '問題を入力してください' %>
+    </p>
+        <%= f.text_area :que %>
+    <p>
+        <%= f.submit '投稿' %>
+    </p>
+<% end %>

@@ -12,6 +12,14 @@
 
 ActiveRecord::Schema.define(version: 2022_11_16_061745) do
 
+  create_table "questions", force: :cascade do |t|
+    t.text "que"
+    t.string "user_name"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "uname"
     t.string "pass"
