@@ -25,7 +25,7 @@ production:
   adapter: postgresql
   edncoding: unicode
   pool: 5
-  databse: teamrender
+  database: teamrender
   username: teamrender_user
   password: <%= ENV['MYSITE_DATABASE_PASSWORD'] %>
   url: <%= ENV['DATABASE_URL'] %>
