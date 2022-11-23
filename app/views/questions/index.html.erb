@@ -1,0 +1,19 @@
+<font size="7">Welcome Page</font>
+<% @questions.each do |e| %>
+<p>
+  <%= e.user_name %>
+</p>
+<p>
+  <%= e.que %>
+</p>
+<% end %>
+
+<p> 
+<% if session[:login_uid] %>
+  <%= link_to 'クイズ作成', "/questions/new" %>
+<% end %>
+
+<create>
+  <%= link_to 'クイズ作成', "/questions/new" %>
+</create>
+</p>
