@@ -9,8 +9,8 @@ class QuestionsController < ApplicationController
     
     def create
         que = params[:question][:que]
-        #user = User.find_by(uid: session[:login_uid])
-        @question = Question.new(que: que)#, user_id: user.id)
+        user = User.find_by(uname: session[:login_uid])
+        @question = Question.new(que: que , user_id: user)
         if @question.save
             redirect_to root_path
         else
