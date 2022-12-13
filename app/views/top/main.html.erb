@@ -1,1 +1,10 @@
 <%= link_to 'ログアウト', top_logout_path %>
+<p>
+<%= link_to 'ホームに戻る', root_path %>
+</p>
+
+<% if session[:uname] %>
+  ログイン中
+<% else %>
+  ログインしていません
+<% end %>

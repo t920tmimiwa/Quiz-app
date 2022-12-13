@@ -14,7 +14,10 @@ ActiveRecord::Schema.define(version: 2022_11_16_061745) do
 
   create_table "questions", force: :cascade do |t|
     t.text "que"
-    t.text "choice"
+    t.text "answer1"
+    t.text "answer2"
+    t.text "answer3"
+    t.text "answer4"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

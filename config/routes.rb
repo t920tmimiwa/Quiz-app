@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   resources :users
   root 'questions#index'
-  root 'top#main'
   
   get 'top/main'
   post 'top/login'

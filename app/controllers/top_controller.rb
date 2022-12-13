@@ -24,6 +24,6 @@ class TopController < ApplicationController
 
   def logout
     session.delete(:uname)
-    redirect_to top_main_path
+    redirect_to root_path
   end
 end
