@@ -8,6 +8,7 @@ class CreateQuestions < ActiveRecord::Migration[5.2]
       t.text :answer3
       t.text :answer4
       t.integer :user_id
+      t.text :correct_answer
       
       t.timestamps
     end

@@ -1,27 +1,33 @@
 <font size="6">Welcome Page</font>
 <% @questions.each do |e| %>
-<% if session[:uname] %> 
-<p>
-  <%= e.que %>
-</p>
-<p>
-  <%= e.answer1 %>
-  <%= e.answer2 %>
-  <%= e.answer3 %>
-  <%= e.answer4 %>
-  <%= link_to '削除', question_path(e), method: :delete %>
-</p>
-<% end %>
+  <% if session[:uname] %>
+    <p>
+      <%= e.que %>
+    </p>
+    <p>
+      <%= e.answer1 %>
+      <%= e.answer2 %>
+      <%= e.answer3 %>
+      <%= e.answer4 %>
+      <%= link_to '削除', question_path(e), method: :delete %>
+    </p>
+    <p>
+      <%= link_to 'クイズに答える', "/questions/#{e.id}/edit" %>
+    </p>
+    
+    <p>
+      <%= link_to '結果発表', "/questions/#{e.id}/mark" %></p>
+    <% end %>
 <% end %>
 
 <p> 
 <% if session[:uname] %>
-  <%= link_to 'クイズ作成', "/questions/new" %>
+  <%= link_to 'クイズ作成', new_question_path %>
 <% end %>
 </p>
 
 <p>
-  <%= link_to '登録', users_path %>
+  <%= link_to 'ユーザー登録', users_path %>
 </p>
 
 <% if session[:uname] %>
