@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'top/main'
   post 'top/login'
   get 'top/logout'
-  get 'questions/quiz'
+  get 'questions/:id/quiz', to: 'questions#quiz'
   get 'questions/:id/mark', to: 'questions#mark'
   
   resources :questions

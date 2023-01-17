@@ -4,6 +4,7 @@
     <p>
       <%= e.que %>
     </p>
+    
     <p>
       <%= e.answer1 %>
       <%= e.answer2 %>
@@ -11,6 +12,7 @@
       <%= e.answer4 %>
       <%= link_to '削除', question_path(e), method: :delete %>
     </p>
+    
     <p>
       <%= link_to 'クイズに答える', "/questions/#{e.id}/edit" %>
     </p>
