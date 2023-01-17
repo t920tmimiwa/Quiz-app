@@ -1,32 +1,34 @@
-<font size="6">回答者ページ</font>
+<h1><div aligen="center">回答者ページ</h1>
+
+<h2>問題</h2>
+<p>
+    <%= @question.que %>
+</p>
+
+<p>選択肢</p>
+<p>1.
+    <%= @question.answer1 %>
+</p>
+
+<p>2.
+    <%= @question.answer2 %>
+</p>
+
+<p>3.
+    <%= @question.answer3 %>
+</p>
+
+<p>4.
+    <%= @question.answer4 %>
+</p>
+
 <%= form_for @question, url: {action: :update} do |f| %>
-<% @question.each do |e| %>
-    <p>
-        <%= e.id %>
-    </p>
-    
-    <p>
-        <%= e.answer1 %>
-    </p>
-    
-    <p>
-        <%= e.answer2 %>
-    </p>
-    
-    <p>
-        <%= e.answer3 %>
-    </p>
-    
-    <p>
-        <%= e.answer4 %>
-    </p>
-<% end %>
     <p>答えを選択してください</p>
     <%- answers = [
-        ["answer1", '解答1'],
-        ["answer2", '解答2'],
-        ["answer3", '解答3'],
-        ["answer4", '解答4']
+        ["answer1", '1'],
+        ["answer2", '2'],
+        ["answer3", '3'],
+        ["answer4", '4']
     ] %>
 
     <%= f.collection_radio_buttons(:choice, answers, :first, :second) %>

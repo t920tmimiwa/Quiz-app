@@ -1,26 +1,22 @@
-<font size="6">Welcome Page</font>
-<% @questions.each do |e| %>
-  <% if session[:uname] %>
-    <p>
+<h1>Quizapp</h1>
+<% if session[:uname] %>
+<h2>問題一覧</h2>
+  <% @questions.each do |e| %>
+  <hr class="hr1">
+    <p><strong>問<%= e.id %></strong>
       <%= e.que %>
     </p>
-    
+
     <p>
-      <%= e.answer1 %>
-      <%= e.answer2 %>
-      <%= e.answer3 %>
-      <%= e.answer4 %>
+      <%= link_to 'クイズに答える', "/questions/#{e.id}/quiz" %>
       <%= link_to '削除', question_path(e), method: :delete %>
     </p>
-    
-    <p>
-      <%= link_to 'クイズに答える', "/questions/#{e.id}/edit" %>
-    </p>
-    
-    <p>
-      <%= link_to '結果発表', "/questions/#{e.id}/mark" %></p>
+      <% if e.choice %>
+        <%= link_to '結果発表', "/questions/#{e.id}/mark" %></p>
+      <% end %>
     <% end %>
 <% end %>
+<hr class="hr1">
 
 <p> 
 <% if session[:uname] %>

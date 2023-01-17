@@ -24,13 +24,9 @@ class QuestionsController < ApplicationController
         end
     end
     
-    def edit
-        @question = Question.find(params[:id])
-        @questions = Question.all
-    end
-    
     def quiz
         @question = Question.find(params[:id])
+        @questions = Question.all
     end
     
     def mark

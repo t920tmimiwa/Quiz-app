@@ -1,28 +1,28 @@
-<font size="6">作成者ページ</font>
+<h1>作成者ページ</h1>
 <%= form_for @question, url: {action: :create} do |f| %>
     <p>
         <%= f.label :que, '問題を入力してください' %>
     </p>
         <%= f.text_area :que %>
     
-    <p>答え1</p>
+    <p>1</p>
     <%= f.text_area :answer1 %>
     
-    <p>答え2</p>
+    <p>2</p>
     <%= f.text_area :answer2 %>
     
-    <p>答え3</p>
+    <p>3</p>
     <%= f.text_area :answer3 %>
     
-    <p>答え4</p>
+    <p>4</p>
     <%= f.text_area :answer4 %>
     
     <p>答えを設定してください</p>
     <%- answers = [
-        ["answer1", '解答1'],
-        ["answer2", '解答2'],
-        ["answer3", '解答3'],
-        ["answer4", '解答4']
+        ["answer1", '1'],
+        ["answer2", '2'],
+        ["answer3", '3'],
+        ["answer4", '4']
     ] %>
     
     <%= f.collection_radio_buttons(:correct_answer, answers, :first, :second) %>
