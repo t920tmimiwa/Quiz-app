@@ -1,7 +1,6 @@
 <h1>Quizapp</h1>
-<% if session[:uname] %>
 <h2>問題一覧</h2>
-  <% @questions.each do |e| %>
+<% @questions.each do |e| %>
   <hr class="hr1">
     <p><strong>問<%= e.id %></strong>
       <%= e.que %>
@@ -12,9 +11,8 @@
       <%= link_to '削除', question_path(e), method: :delete %>
     </p>
       <% if e.choice %>
-        <%= link_to '結果発表', "/questions/#{e.id}/mark" %></p>
+        <%= link_to '結果発表', "/questions/#{e.id}/mark" %>
       <% end %>
-    <% end %>
 <% end %>
 <hr class="hr1">
 
