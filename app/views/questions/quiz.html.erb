@@ -1,5 +1,4 @@
 <h1><div aligen="center">回答者ページ</h1>
-
 <h2>問題</h2>
 <p>
     <%= @question.que %>
@@ -38,3 +37,23 @@
     </p>
     
 <% end %>
+
+<%
+=begin
+<%>
+<%= form_tag questions_mark_path do %>
+  <% @questions.each do |quiz| %>
+    <%= quiz.id %>
+    <%= hidden_field_tag "quiz[]", quiz.id %>
+    <%= text_field_tag "quiz#{quiz.id}" %>
+  <% end %>
+  <%= submit_tag "回答" %>
+<% end %>
+
+<p>
+<%= @question_id %>
+</p>
+
+<%
+=end 
+%>

@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController
     def index
         @questions = Question.all
+        @users = User.all
     end
    
     def new
@@ -26,7 +27,16 @@ class QuestionsController < ApplicationController
     
     def quiz
         @question = Question.find(params[:id])
-        @questions = Question.all
+=begin
+        @questions = Question.all.sample(3)
+        start = 0
+        finish = @questions.count
+        session[:start] = start
+        session[:finish] = finish
+        @questions.each do |e|
+            @question_id = e.que
+        end
+=end
     end
     
     def mark
@@ -39,15 +49,26 @@ class QuestionsController < ApplicationController
     end
     
     def update
-        @question = Question.find(params[:id])
+        question = Question.find(params[:id])
         choice = params[:question][:choice]
-        @question = Question.update(choice: choice)
-        redirect_to root_path
+        question.update(choice: choice)
+        redirect_to "/questions/#{question.id}/mark"
+=begin
+        if session[:finish] <= session[:start]
+            redirect_to 
+        end
+        redirect_to "/questions/#{@question.id}/mark"
+=end
+    end
+    
+    def show
+        @questions = Question.all
+        @user = User.find_by(uname: session[:uname])
     end
     
     def destroy
         question = Question.find(params[:id])
         question.destroy
-        redirect_to root_path
+        redirect_to questions_show_path
     end
 end

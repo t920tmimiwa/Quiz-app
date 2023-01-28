@@ -1,11 +1,17 @@
 <h1>Quizapp</h1>
-<h2>問題一覧</h2>
+<% if session[:uname] %>
+  <h2>問題一覧</h2>
+<% end %>
+
+<%
+=begin
+%>
 <% @questions.each do |e| %>
   <hr class="hr1">
-    <p><strong>問<%= e.id %></strong>
+    <p><strong>問</strong>
       <%= e.que %>
     </p>
-
+    <%= e.user_id %>
     <p>
       <%= link_to 'クイズに答える', "/questions/#{e.id}/quiz" %>
       <%= link_to '削除', question_path(e), method: :delete %>
@@ -16,7 +22,24 @@
 <% end %>
 <hr class="hr1">
 
-<p> 
+<%
+=end 
+%>
+
+<% @questions.each do |e| %>
+  <hr class="hr1">
+    <p><strong>問</strong>
+      <%= e.que %>
+    </p>
+    <%= e.user_id %>
+    <p>
+      <%= link_to 'クイズに答える', "/questions/#{e.id}/quiz" %>
+      <%= link_to '削除', question_path(e), method: :delete %>
+    </p>
+<% end %>
+<hr class="hr1">
+
+<p>
 <% if session[:uname] %>
   <%= link_to 'クイズ作成', new_question_path %>
 <% end %>
@@ -26,16 +49,18 @@
   <%= link_to 'ユーザー登録', users_path %>
 </p>
 
+<p>
+<% if session[:uname] %>
+  <%= link_to 'マイページ', questions_show_path	 %>
+<% end %>
+</p>
+
 <% if session[:uname] %>
     <%= link_to 'ログアウト', top_logout_path %>
 <% else %>
     <%= link_to 'ログイン', top_main_path %>
 <% end %>
 
+<p>
+/rails/info/routes
 </p>
-
-<% if session[:uname] %>
-    ログイン中
-<% else %>
-    ログインしていません
-<% end %>

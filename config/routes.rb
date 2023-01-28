@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'users/index'
   resources :users
   root 'questions#index'
   
@@ -7,7 +8,8 @@ Rails.application.routes.draw do
   get 'top/logout'
   get 'questions/:id/quiz', to: 'questions#quiz'
   get 'questions/:id/mark', to: 'questions#mark'
+  get 'questions/show'
+  post 'questions/mark'
   
   resources :questions
-  patch 'questions/:id', to: 'questions#update' 
 end

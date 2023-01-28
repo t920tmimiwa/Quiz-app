@@ -1,9 +1,6 @@
-class UsersController < ApplicationController
-  def index
+class ChoicesController < ApplicationController
+    def index
     @users = User.all
-    if session[:uname]
-      @user = User.find_by(id:1)
-    end
   end
   
   def new
@@ -22,7 +19,5 @@ class UsersController < ApplicationController
   def destroy
     user = User.find(params[:id])
     user.destroy
-    session.delete(:uname)
     redirect_to users_path
-  end
 end
