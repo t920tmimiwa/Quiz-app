@@ -1,7 +1,15 @@
 class QuestionsController < ApplicationController
     def index
         @questions = Question.all
-        @users = User.all
+        @questionall = Question.all.sample(4)
+        qarray = []
+        @questionall.each do |e|
+            qarray.push(e.id)
+        end
+        session[:qarray] = qarray
+        session[:start] = qarray[0]
+        qarray.shift()
+        session[:answer] = false
     end
    
     def new
@@ -19,7 +27,7 @@ class QuestionsController < ApplicationController
         choice = params[:question][:choice]
         question = Question.new(que: que, user_id: user.id, answer1: answer1, answer2: answer2, answer3: answer3, answer4: answer4, correct_answer: correct_answer, choice: choice)
         if question.save
-            redirect_to root_path
+            redirect_to questions_show_path
         else
             render 'new'
         end
@@ -27,24 +35,21 @@ class QuestionsController < ApplicationController
     
     def quiz
         @question = Question.find(params[:id])
-=begin
-        @questions = Question.all.sample(3)
-        start = 0
-        finish = @questions.count
-        session[:start] = start
-        session[:finish] = finish
-        @questions.each do |e|
-            @question_id = e.que
-        end
-=end
+        #now = qarray[0]
+        #session[:now] = now
     end
     
     def mark
-        quiz = Question.find(params[:id])
-        if quiz.correct_answer == quiz.choice
+        nowarray = session[:qarray]
+        @nextid = nowarray.shift()
+        @question = Question.find(params[:id])
+        if @question.correct_answer == @question.choice
             @answer= "正解"
+            session[:answer] = @answer
         else
             @answer = "不正解"
+            session[:answer] = @answer
+            #redirect_to "/questions/#{session[:now]}/quiz"
         end
     end
     
@@ -54,10 +59,9 @@ class QuestionsController < ApplicationController
         question.update(choice: choice)
         redirect_to "/questions/#{question.id}/mark"
 =begin
-        if session[:finish] <= session[:start]
+        if session[:fid] = session[:sid]
             redirect_to 
         end
-        redirect_to "/questions/#{@question.id}/mark"
 =end
     end
     

@@ -21,7 +21,7 @@
     <%= @question.answer4 %>
 </p>
 
-<%= form_for @question, url: {action: :update} do |f| %>
+<%= form_with model: @question, url: {action: :update} do |f| %>
     <p>答えを選択してください</p>
     <%- answers = [
         ["answer1", '1'],
@@ -31,29 +31,15 @@
     ] %>
 
     <%= f.collection_radio_buttons(:choice, answers, :first, :second) %>
-    
     <p>
         <%= f.submit '回答' %>
     </p>
-    
-<% end %>
-
-<%
-=begin
-<%>
-<%= form_tag questions_mark_path do %>
-  <% @questions.each do |quiz| %>
-    <%= quiz.id %>
-    <%= hidden_field_tag "quiz[]", quiz.id %>
-    <%= text_field_tag "quiz#{quiz.id}" %>
-  <% end %>
-  <%= submit_tag "回答" %>
 <% end %>
 
 <p>
-<%= @question_id %>
+    <%= link_to '戻る', questions_path %>
 </p>
 
-<%
-=end 
-%>
+<%= session[:qarray] %>
+<br>
+

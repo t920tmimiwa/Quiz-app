@@ -1,21 +1,21 @@
 <h1>作成者ページ</h1>
 <%= form_for @question, url: {action: :create} do |f| %>
     <p>
-        <%= f.label :que, '問題を入力してください' %>
+        <%= f.label :que, '問題文' %>
     </p>
-        <%= f.text_area :que %>
+        <%= f.text_area :que, class: "form-control", style: "width:90%", rows: "5", placeholder: "問題を入力してください" %>
     
     <p>1</p>
-    <%= f.text_area :answer1 %>
+    <%= f.text_area :answer1, class: "form-control", style: "width:40%", rows: "5", placeholder: "選択肢1の答えを入力してください" %>
     
     <p>2</p>
-    <%= f.text_area :answer2 %>
+    <%= f.text_area :answer2, class: "form-control", style: "width:40%", rows: "5", placeholder: "選択肢2の答えを入力してください" %>
     
     <p>3</p>
-    <%= f.text_area :answer3 %>
+    <%= f.text_area :answer3, class: "form-control", style: "width:40%", rows: "5", placeholder: "選択肢3の答えを入力してください" %>
     
     <p>4</p>
-    <%= f.text_area :answer4 %>
+    <%= f.text_area :answer4, class: "form-control", style: "width:40%", rows: "5", placeholder: "選択肢4の答えを入力してください" %>
     
     <p>答えを設定してください</p>
     <%- answers = [
@@ -26,7 +26,7 @@
     ] %>
     
     <%= f.collection_radio_buttons(:correct_answer, answers, :first, :second) %>
-
+    
     <p>
         <%= f.submit '投稿' %>
     </p>

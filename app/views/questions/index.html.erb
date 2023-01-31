@@ -3,47 +3,21 @@
   <h2>問題一覧</h2>
 <% end %>
 
-<%
-=begin
-%>
-<% @questions.each do |e| %>
-  <hr class="hr1">
-    <p><strong>問</strong>
-      <%= e.que %>
-    </p>
-    <%= e.user_id %>
-    <p>
-      <%= link_to 'クイズに答える', "/questions/#{e.id}/quiz" %>
-      <%= link_to '削除', question_path(e), method: :delete %>
-    </p>
-      <% if e.choice %>
-        <%= link_to '結果発表', "/questions/#{e.id}/mark" %>
-      <% end %>
-<% end %>
-<hr class="hr1">
-
-<%
-=end 
-%>
+<%= @q %>
 
 <% @questions.each do |e| %>
   <hr class="hr1">
     <p><strong>問</strong>
       <%= e.que %>
+      <%= e.correct_answer %>
     </p>
-    <%= e.user_id %>
-    <p>
       <%= link_to 'クイズに答える', "/questions/#{e.id}/quiz" %>
       <%= link_to '削除', question_path(e), method: :delete %>
     </p>
 <% end %>
 <hr class="hr1">
 
-<p>
-<% if session[:uname] %>
-  <%= link_to 'クイズ作成', new_question_path %>
-<% end %>
-</p>
+<%= link_to 'クイズに答える', "/questions/#{session[:start]}/quiz" %>
 
 <p>
   <%= link_to 'ユーザー登録', users_path %>

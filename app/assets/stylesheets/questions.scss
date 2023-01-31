@@ -24,3 +24,43 @@ c{
   width: max(20vw, 400px);
   color: red;
 }
+
+/*入力フォーム右下の//みたいなやつを消す*/
+.form-control{
+  resize: none;
+}
+
+/*正解マーク（円）*/
+.circle{
+  display: inline-block;
+  width: 160px;
+  height: 160px;
+  text-align:center;
+  line-height: 250px;
+  border-radius: 50%;
+  border: solid 20px red;
+  position: relative;
+  left: 150px;
+}
+
+
+/*バツ*/
+.batu {
+	position: relative;
+	width: 30px; /* 縦棒の幅 */
+	height: 180px; /* 縦棒の長さ */
+	background: #3366cc; /* 縦棒の色 */
+	transform: rotate(45deg); /* 角度 */
+	left: 200px;
+	bottom: 20px;
+}
+
+.batu::after {
+	content: "";
+	position: absolute;
+	top: 73px; /* 横棒のy位置 */
+	left: -73px; /* 横棒のX位置 */
+	width: 180px; /* 横棒の長さ */
+	height: 30px; /* 横棒の幅 */
+	background: #3366cc; /* 横棒の色 */
+}
