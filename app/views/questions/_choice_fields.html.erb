@@ -1,0 +1,13 @@
+<input name="arr_json" type="hidden" value=<%= @arr_json %> class='arr_json'/>
+<div class="nested-fields">
+  <div class="row mx-auto">
+    <div class="col-5"><%= f.text_area :body, placeholder:"答えを入力してください", size:'80 x 6', class:'form-control' %></div>
+    <div class="offset-1 col-1 px-0 w-auto" hidden >
+      <%= link_to_remove_association "削除", f, class: "btn btn-secondary btn-block" %>
+    </div>
+    <%= f.check_box :correct_answer, {}, true, false %>
+  </div>
+  <br>
+</div>
+
+<%= javascript_include_tag 'question.js' %>

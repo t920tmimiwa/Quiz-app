@@ -1,4 +1,5 @@
 class TopController < ApplicationController
+  #layout false
   def main
     if session[:uname]
       render 'main'
@@ -13,7 +14,6 @@ class TopController < ApplicationController
       login_password = BCrypt::Password.new(user.pass)
       if login_password == params[:pass]
         session[:uname] = user.uname
-        session[:uid] = user.id
         redirect_to root_path
       else
         render 'login'
@@ -24,7 +24,9 @@ class TopController < ApplicationController
   end
 
   def logout
-    session.delete(:uname)
+    if session[:uname]
+      session.delete(:uname)
+    end
     redirect_to root_path
   end
 end

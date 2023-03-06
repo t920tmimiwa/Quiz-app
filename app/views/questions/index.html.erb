@@ -1,40 +1,5 @@
-<h1>Quizapp</h1>
-<% if session[:uname] %>
-  <h2>問題一覧</h2>
+<% if session[:qarray].present? %>
+  <button>
+    <%= link_to 'クイズ', "/questions/#{@start_id}/quiz" %>
+  </button>
 <% end %>
-
-<%= @q %>
-
-<% @questions.each do |e| %>
-  <hr class="hr1">
-    <p><strong>問</strong>
-      <%= e.que %>
-      <%= e.correct_answer %>
-    </p>
-      <%= link_to 'クイズに答える', "/questions/#{e.id}/quiz" %>
-      <%= link_to '削除', question_path(e), method: :delete %>
-    </p>
-<% end %>
-<hr class="hr1">
-
-<%= link_to 'クイズに答える', "/questions/#{session[:start]}/quiz" %>
-
-<p>
-  <%= link_to 'ユーザー登録', users_path %>
-</p>
-
-<p>
-<% if session[:uname] %>
-  <%= link_to 'マイページ', questions_show_path	 %>
-<% end %>
-</p>
-
-<% if session[:uname] %>
-    <%= link_to 'ログアウト', top_logout_path %>
-<% else %>
-    <%= link_to 'ログイン', top_main_path %>
-<% end %>
-
-<p>
-/rails/info/routes
-</p>

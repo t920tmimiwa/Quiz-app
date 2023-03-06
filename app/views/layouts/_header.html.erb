@@ -1,0 +1,28 @@
+<header>
+    <h1><a><%= link_to '素朴なクイズ', questions_path %></a></h1>
+    <nav>
+        <ul>
+            <li>
+                <a>
+                    <% if session[:uname] %>
+                        <%= link_to 'マイページ', questions_show_path	 %>
+                    <% end %>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <%= link_to 'ユーザー登録', new_user_path %>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <% if session[:uname] %>
+                        <%= link_to 'ログアウト', top_logout_path %>
+                    <% else %>
+                        <%= link_to 'ログイン', top_main_path %>
+                    <% end %>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>

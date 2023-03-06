@@ -1,31 +1,39 @@
-<h1>作成者ページ</h1>
-<%= form_for @question, url: {action: :create} do |f| %>
-    <p>
-        <%= f.label :que, '問題文' %>
-    </p>
-        <%= f.text_area :que, class: "form-control", style: "width:90%", rows: "5", placeholder: "問題を入力してください" %>
+<% if @question.errors.present? %>
+    <ul>
+    <% @question.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+    </ul>
+    <% end %>
+<% end %>
+
+<%= form_with model: @question, local:true do |f| %>
+    <h2>
+        <%= f.label :body, '問題文' %>
+    </h2>
+        <%= f.text_area :body, class: "form-control", style: "width:90%", rows: "5", placeholder: "問題を入力してください" %>
     
-    <p>1</p>
-    <%= f.text_area :answer1, class: "form-control", style: "width:40%", rows: "5", placeholder: "選択肢1の答えを入力してください" %>
-    
-    <p>2</p>
-    <%= f.text_area :answer2, class: "form-control", style: "width:40%", rows: "5", placeholder: "選択肢2の答えを入力してください" %>
-    
-    <p>3</p>
-    <%= f.text_area :answer3, class: "form-control", style: "width:40%", rows: "5", placeholder: "選択肢3の答えを入力してください" %>
-    
-    <p>4</p>
-    <%= f.text_area :answer4, class: "form-control", style: "width:40%", rows: "5", placeholder: "選択肢4の答えを入力してください" %>
-    
-    <p>答えを設定してください</p>
-    <%- answers = [
-        ["answer1", '1'],
-        ["answer2", '2'],
-        ["answer3", '3'],
-        ["answer4", '4']
-    ] %>
-    
-    <%= f.collection_radio_buttons(:correct_answer, answers, :first, :second) %>
+    <div class="recipe-ingredients">
+        <div class="mx-auto">
+            <%= f.fields_for :choices, @question.choices.build do |choice| %>
+            <div class = "test">
+            <div>
+                <thead class="pb-1"><h5 class="mb-0"><%= "選択肢" %></h5></thead>
+                <%= render "questions/choice_fields", f: choice %>
+            <% end %>
+        </div>
+        
+        <div id="detail-association-insertion-point"></div>
+        
+        
+        <div class="col-10 mx-auto mt-2">
+            <%= link_to_add_association "+フォームを追加", f, :choices,
+            class: "btn btn-secondary btn-block",
+            data: {
+            association_insertion_node: '#detail-association-insertion-point',
+            association_insertion_method: 'before'
+            }%>
+        </div>
+    </div>
     
     <p>
         <%= f.submit '投稿' %>

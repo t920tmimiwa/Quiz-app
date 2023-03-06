@@ -1,15 +1,19 @@
 class QuestionsController < ApplicationController
     def index
-        @questions = Question.all
-        @questionall = Question.all.sample(4)
+        @questionrandom = Question.all.sample(3)
         qarray = []
-        @questionall.each do |e|
+        choices_count = []
+        @questionrandom.each do |e|
             qarray.push(e.id)
+            choices_count.push(e.choices.count)
         end
+        
         session[:qarray] = qarray
-        session[:start] = qarray[0]
-        qarray.shift()
+        #indexに代入する値
+        @start_id = qarray[0]
         session[:answer] = false
+        
+        session[:choices_count] = choices_count
     end
    
     def new
@@ -17,16 +21,8 @@ class QuestionsController < ApplicationController
     end
     
     def create
-        que = params[:question][:que]
-        user = User.find_by(uname: session[:uname])
-        answer1 = params[:question][:answer1]
-        answer2 = params[:question][:answer2]
-        answer3 = params[:question][:answer3]
-        answer4 = params[:question][:answer4]
-        correct_answer = params[:question][:correct_answer]
-        choice = params[:question][:choice]
-        question = Question.new(que: que, user_id: user.id, answer1: answer1, answer2: answer2, answer3: answer3, answer4: answer4, correct_answer: correct_answer, choice: choice)
-        if question.save
+        @question = Question.new(question_params)
+        if @question.save
             redirect_to questions_show_path
         else
             render 'new'
@@ -35,21 +31,21 @@ class QuestionsController < ApplicationController
     
     def quiz
         @question = Question.find(params[:id])
-        #now = qarray[0]
-        #session[:now] = now
+        @choices = @question.choices
+        @question_number = Array.new(@choices.count){|i| i+1}
     end
     
     def mark
         nowarray = session[:qarray]
-        @nextid = nowarray.shift()
+        nowarray.shift()
+        @nextid = nowarray[0]
         @question = Question.find(params[:id])
-        if @question.correct_answer == @question.choice
+        if ActiveRecord::Type::Boolean.new.cast(params[:choice_id])
             @answer= "正解"
             session[:answer] = @answer
         else
             @answer = "不正解"
             session[:answer] = @answer
-            #redirect_to "/questions/#{session[:now]}/quiz"
         end
     end
     
@@ -58,21 +54,29 @@ class QuestionsController < ApplicationController
         choice = params[:question][:choice]
         question.update(choice: choice)
         redirect_to "/questions/#{question.id}/mark"
-=begin
-        if session[:fid] = session[:sid]
-            redirect_to 
-        end
-=end
     end
     
     def show
-        @questions = Question.all
-        @user = User.find_by(uname: session[:uname])
+        @user = current_user.questions
+        @cuchoices = current_user.choices
+        @cuchoice = current_user.questions
+        @cuchoice.each do |e|
+            @c = e.choices.group(:correct_answer).count
+        end
     end
     
     def destroy
         question = Question.find(params[:id])
         question.destroy
         redirect_to questions_show_path
+    end
+    
+private
+
+    def question_params
+        params.require(:question).permit(
+            :body,
+            choices_attributes: [:body, :correct_answer, :_destroy, :id]
+        ).merge(user_id: current_user.id)
     end
 end

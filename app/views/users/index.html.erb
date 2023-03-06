@@ -1,18 +1,9 @@
 <% @users.each do |e| %>
     <p>
         <%= e.uname %>
-        <%= e.pass %>
-        <%= link_to '削除', user_path(e.id), method: :delete %>
+        <%= button_to '削除', user_path(e.id), method: :delete %>
     </p>
 <% end %>
 
 <%= link_to '新規追加', new_user_path %>
 <%= link_to '戻る', questions_path %>
-
-<p>
-<% if session[:uname] %>
-    ログイン中
-<% else %>
-    ログインしていません
-<% end %>
-</p>

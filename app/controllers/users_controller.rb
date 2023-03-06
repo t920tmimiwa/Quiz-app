@@ -1,9 +1,6 @@
 class UsersController < ApplicationController
   def index
     @users = User.all
-    if session[:uname]
-      @user = User.find_by(id:1)
-    end
   end
   
   def new
@@ -11,8 +8,8 @@ class UsersController < ApplicationController
   end
   
   def create
-    user = User.new(uname: params[:user][:uname], pass: BCrypt::Password.create(params[:user][:pass]))
-    if user.save
+    @user = User.new(uname: params[:user][:uname], pass: BCrypt::Password.create(params[:user][:pass]))
+    if @user.save
       redirect_to root_path
     else
       render new_user_path
@@ -23,6 +20,6 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     user.destroy
     session.delete(:uname)
-    redirect_to users_path
+    redirect_to root_path
   end
 end

@@ -2,18 +2,6 @@
 // They wil automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-body{
-  background-color: #FFFFCC;
-}
-
-h1{
-  padding: 0.4em 0.5em;/*文字の上下 左右の余白*/
-  color: #494949;/*文字色*/
-  background: #f4f4f4;/*背景色*/
-  border-left: solid 5px #7db4e6;/*左線*/
-  border-bottom: solid 3px #d7d7d7;/*下線*/
-}
-
 /*区切り線*/
 .hr1 {
   border-top: 3px double #8c8b8b;
@@ -63,4 +51,53 @@ c{
 	width: 180px; /* 横棒の長さ */
 	height: 30px; /* 横棒の幅 */
 	background: #3366cc; /* 横棒の色 */
+}
+
+button {
+  background-image: linear-gradient(
+    to right,
+    #54b3d6,
+    #54b3d6 50%,
+    #000 50%
+  );
+  background-size: 200% 100%;
+  background-position: -100%;
+  display: inline-block;
+  padding: 5px 0;
+  position: relative;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.3s ease-in-out;
+}
+
+button:before{
+  content: '';
+  background: #54b3d6;
+  display: block;
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+ background-position: 0;
+}
+
+button:hover::before{
+  width: 100%;
+}
+
+/* Presentational Styles */
+button {
+    margin: auto;
+    position: relative;
+    top: 250px;
+    display: grid;
+    font-family: 'Poppins', sans-serif;
+    font-size: 50px;
+    height: 100px;
+    place-items: center;
 }

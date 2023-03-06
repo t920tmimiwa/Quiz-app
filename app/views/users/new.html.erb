@@ -1,7 +1,22 @@
-<%= form_for @user, action: :create do |f| %>
-    <%= f.label :uname, 'ユーザー名' %>
-    <%= f.text_field :uname %>
-    <%= f.label :pass, 'パスワード' %>
-    <%= f.text_field :pass %>
-    <%= f.submit '登録' %>
+<% if @user.errors.present? %>
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+    </ul>
+    <% end %>
 <% end %>
+
+<div class="form">
+    <div class="form_title">登録フォーム</div>
+    <div class="form_content">
+        <%= form_for @user, action: :create do |f| %>
+            <div class="form_list">
+                <%= f.label :uname, 'ユーザー名' %>
+                <%= f.text_field :uname %>
+                <%= f.label :pass, 'パスワード' %>
+                <%= f.text_field :pass %>
+                <%= f.submit '登録', id: "register" %>
+            </div>
+        <% end %>
+    </div>
+</div>

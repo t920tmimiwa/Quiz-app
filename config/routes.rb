@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   get 'users/index'
-  resources :users
+  resources :users, except: [:show]
   root 'questions#index'
-  
   get 'top/main'
   post 'top/login'
   get 'top/logout'

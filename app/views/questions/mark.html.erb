@@ -1,8 +1,14 @@
 <h1><div aligen="center">回答者ページ</h1>
-<h2>問題</h2>
+<p>問題</p>
 <p>
-    <%= @question.que %>
+    <%= @question.body %>
 </p>
+
+<p>
+   <%= @answer %> 
+</p>
+
+
 <% if session[:answer] %>
     <% if session[:answer] == "正解" %>
         <a class="circle"></a>
@@ -14,46 +20,16 @@
 <% end %>
 
 <p>選択肢</p>
-<p>1.
-    <%= @question.answer1 %>
-</p>
-
-<p>2.
-    <%= @question.answer2 %>
-</p>
-
-<p>3.
-    <%= @question.answer3 %>
-</p>
-
-<p>4.
-    <%= @question.answer4 %>
-</p>
-
-<%= form_with model: @question, url: {action: :update} do |f| %>
-    <p>答えを選択してください</p>
-    <%- answers = [
-        ["answer1", '1'],
-        ["answer2", '2'],
-        ["answer3", '3'],
-        ["answer4", '4']
-    ] %>
-
-    <%= f.collection_radio_buttons(:choice, answers, :first, :second) %>
-    <p>
-        <%= f.submit '回答' %>
-    </p>
-<% end %>
-
+    <%= @question.id %>
+<br>
+<br>
 <% if session[:answer] %>
     <% if session[:qarray].present? %>
         <%= link_to '次の問題に進む', "/questions/#{@nextid}/quiz" %>
+    <% else %>
+        <%= link_to '戻る', questions_path %>
     <% end %>
 <% end %>
 
-
-<p>
-    <%= link_to '戻る', questions_path %>
-</p>
-
+<%= session[:qarray] %>
 <%= @nextid %>
