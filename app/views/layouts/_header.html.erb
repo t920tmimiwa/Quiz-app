@@ -5,13 +5,15 @@
             <li>
                 <a>
                     <% if session[:uname] %>
-                        <%= link_to 'マイページ', questions_show_path	 %>
+                        <%= link_to 'マイページ', questions_show_path %>
                     <% end %>
                 </a>
             </li>
             <li>
                 <a>
-                    <%= link_to 'ユーザー登録', new_user_path %>
+                    <% if not session[:uname] %>
+                        <%= link_to 'ユーザー登録', new_user_path %>
+                    <% end %>
                 </a>
             </li>
             <li>

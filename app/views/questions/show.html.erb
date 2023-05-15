@@ -1,5 +1,5 @@
-<h2>問題一覧</h2>
 <% if Question.exists? %>
+<h2>問題一覧</h2>
   <% @user.each do |e| %>
     <p>
       <%= e.body %>

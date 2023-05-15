@@ -1,25 +1,19 @@
-<h1><div aligen="center">回答者ページ</h1>
-<p>問題</p>
+<h1><p>問題</p></h1>
 <p>
     <%= @question.body %>
 </p>
-
-<p>
-   <%= @answer %> 
-</p>
-
 
 <% if session[:answer] %>
     <% if session[:answer] == "正解" %>
         <a class="circle"></a>
     <% else %>
-    　　<div class="container">
+        <div class="container">
           <div class="batu"></div>
         </div>
     <% end %>
 <% end %>
 
-<p>選択肢</p>
+<p>答え</p>
     <%= @question.id %>
 <br>
 <br>

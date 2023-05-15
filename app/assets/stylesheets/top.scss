@@ -24,31 +24,8 @@
     border-bottom: solid 5px #3cb371;
 }
 
-#register:hover{
+#login:hover{
   box-shadow:none;
   position:relative;
   top:2px;
-}
-
-.login_form{
-    position:relative;
-    top: 100px;
-    width: 750px;
-    margin: auto;
-    background-color: white;
-    border: 1px solid #dddddd;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-.login_form_title{
-    color: white;
-    background-color: #3cb371;
-}
-
-.login_form_content{
-    margin: 25px 50px;
-}
-
-.login_form_list{
-    margin-bottom: 2em;
 }

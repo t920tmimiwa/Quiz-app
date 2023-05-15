@@ -9,10 +9,8 @@ class QuestionsController < ApplicationController
         end
         
         session[:qarray] = qarray
-        #indexに代入する値
         @start_id = qarray[0]
-        session[:answer] = false
-        
+
         session[:choices_count] = choices_count
     end
    
@@ -22,6 +20,7 @@ class QuestionsController < ApplicationController
     
     def create
         @question = Question.new(question_params)
+        
         if @question.save
             redirect_to questions_show_path
         else
@@ -58,7 +57,6 @@ class QuestionsController < ApplicationController
     
     def show
         @user = current_user.questions
-        @cuchoices = current_user.choices
         @cuchoice = current_user.questions
         @cuchoice.each do |e|
             @c = e.choices.group(:correct_answer).count

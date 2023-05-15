@@ -14,6 +14,10 @@
  *= require_self
  */
 
+h1{
+  user-select: none; /* 選択を禁止する */
+}
+
 body{
   background-color: #f0ece4;
 }
@@ -51,6 +55,7 @@ ul {
 }
 
 ul li a {
+  user-select: none; /* 選択を禁止する */
   padding: 10px 15px;
   color: #1a1a1a;
   text-decoration: none;

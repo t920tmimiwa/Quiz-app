@@ -1,8 +1,8 @@
-<div class="login_form">
-    <div class="login_form_title">ログイン</div>
-    <div class="login_form_content">
+<div class="form">
+    <div class="form_title">ログイン</div>
+    <div class="form_content">
         <%= form_tag '/top/login', method: :post do %>
-            <div class="login_form_list">
+            <div class="form_list">
                 <%= label_tag :uname, 'ユーザーネーム' %>
                 <%= text_field_tag :uname %>
                 <%= label_tag :pass, 'パスワード' %>
